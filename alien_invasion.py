@@ -1,13 +1,16 @@
 import sys
 import time
 import pygame
+from settings import Settings
 
 
 def run_game():
     # Инициализирует игру и создает объект экрана.
     pygame.init()
-    screen = pygame.display.set_mode((1280, 720))
-    pygame.display.set_caption("UFOs")
+    ai_settings = Settings()
+    screen = pygame.display.set_mode((ai_settings.screen_width, ai_settings.screen_height))
+    pygame.display.set_caption(ai_settings.window_name)
+    bg_color = ai_settings.bg_color
     # Запуск основного цикла игры.
 
     while True:
@@ -18,7 +21,10 @@ def run_game():
                 sys.exit()
 
         # Отображение прорисованного экрана.
+        screen.fill(bg_color)
         pygame.display.flip()
 
 if __name__ == "__main__":
     run_game()
+
+
