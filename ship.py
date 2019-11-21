@@ -4,7 +4,7 @@ import pygame
 class Ship():
 
     def __init__(self, screen):
-        self.screen = screen #Инициализирует корабль и задает его начальную позицию.
+        self.screen = screen  # Инициализирует корабль и задает его начальную позицию.
 
         # Загрузка изображения корабля и получение прямоугольника.
         self.image = pygame.image.load('images/starship.png')
@@ -15,4 +15,4 @@ class Ship():
         self.rect.bottom = self.screen_rect.bottom
 
     def blitme(self):
-        self.screen.blit(self.image, self.rect) #Рисует корабль в текущей позиции.
+        self.screen.blit(self.image, self.rect)  # Рисует корабль в начальной позиции.

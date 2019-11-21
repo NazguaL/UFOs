@@ -1,8 +1,8 @@
-import sys
 import time
 import pygame
 from settings import Settings
 from ship import Ship
+from game_functions import *
 
 
 def run_game():
@@ -11,23 +11,17 @@ def run_game():
     ai_settings = Settings()
     screen = pygame.display.set_mode((ai_settings.screen_width, ai_settings.screen_height))
     pygame.display.set_caption(ai_settings.window_name)
-    bg_color = ai_settings.bg_color
+    # bg_color = ai_settings.bg_color
 
-    # Создание корабля.
-    ship = Ship(screen)
+    ship = Ship(screen)  # Создание корабля.
 
     # Запуск основного цикла игры.
     while True:
-        time.sleep(0.05)
+        time.sleep(0.05)  # уменьшение загрузки ЦП
         # Отслеживание событий клавиатуры и мыши.
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                sys.exit()
-
+        check_events()
         # Отображение прорисованного экрана при каждом проходе цикла.
-        screen.fill(bg_color)
-        ship.blitme()
-        pygame.display.flip()
+        update_screen(ai_settings, screen, ship)
 
 if __name__ == "__main__":
     run_game()
