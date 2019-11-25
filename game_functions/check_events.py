@@ -1,6 +1,6 @@
 import sys
 import pygame
-from bullet import Bullet
+from game_functions.bullet_fire import fire_bullet
 
 
 def check_keydown_events(event, ai_settings, screen, ship, bullets):
@@ -9,9 +9,10 @@ def check_keydown_events(event, ai_settings, screen, ship, bullets):
     elif event.key == pygame.K_LEFT:
         ship.moving_left = True  # Переместить корабль влево.
     elif event.key == pygame.K_SPACE:
-        # Создание новой пули и включение ее в группу bullets.
-        new_bullet = Bullet(ai_settings, screen, ship)
-        bullets.add(new_bullet)
+        fire_bullet(ai_settings, screen, ship, bullets)
+    elif event.key == pygame.K_q:
+        sys.exit()
+
 
 
 def check_keyup_events(event, ship):
