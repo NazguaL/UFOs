@@ -7,6 +7,7 @@ from game_functions import check_events
 from game_functions import update_bullets
 from game_functions import update_screen
 from game_functions import create_fleet
+from game_functions import update_aliens
 
 
 def run_game():
@@ -30,7 +31,7 @@ def run_game():
         # Обновляет позицию корабля.
         ship.update()
         update_bullets(bullets)
-        aliens.update()
+        update_aliens(ai_settings, aliens)
 
         # Отображение прорисованного экрана при каждом проходе цикла.
         update_screen(ai_settings, screen, ship, aliens, bullets)
