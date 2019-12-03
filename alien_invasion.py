@@ -30,7 +30,7 @@ def run_game():
         check_events(ai_settings, screen, ship, bullets)
         # Обновляет позицию корабля.
         ship.update()
-        update_bullets(bullets)
+        update_bullets(ai_settings, screen, ship, aliens, bullets)
         update_aliens(ai_settings, aliens)
 
         # Отображение прорисованного экрана при каждом проходе цикла.
