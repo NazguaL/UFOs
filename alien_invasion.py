@@ -3,6 +3,7 @@ import pygame
 from pygame.sprite import Group
 from settings import Settings
 from ship import Ship
+from game_stats import GameStats
 from game_functions import check_events
 from game_functions import update_bullets
 from game_functions import update_screen
@@ -23,15 +24,19 @@ def run_game():
     aliens = Group()  # Создание группы пришельцев.
     create_fleet(ai_settings, screen, ship, aliens)  # Создание флота пришельцев.
 
+    # Создание экземпляра для хранения игровой статистики.
+    stats = GameStats(ai_settings)
+
     # Запуск основного цикла игры.
     while True:
         time.sleep(0.0005)  # уменьшение загрузки ЦП
         # Отслеживание событий клавиатуры и мыши.
         check_events(ai_settings, screen, ship, bullets)
         # Обновляет позицию корабля.
-        ship.update()
-        update_bullets(ai_settings, screen, ship, aliens, bullets)
-        update_aliens(ai_settings, aliens)
+        if stats.game_active:
+            ship.update()
+            update_bullets(ai_settings, screen, ship, aliens, bullets)
+            update_aliens(ai_settings, stats, screen, ship, aliens, bullets)
 
         # Отображение прорисованного экрана при каждом проходе цикла.
         update_screen(ai_settings, screen, ship, aliens, bullets)

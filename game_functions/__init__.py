@@ -3,3 +3,4 @@ from game_functions.update_screen import update_screen
 from game_functions.bullets_updates import update_bullets
 from game_functions.create_fleet import create_fleet
 from game_functions.update_aliens import update_aliens
+from game_functions.hit_ship import ship_hit
