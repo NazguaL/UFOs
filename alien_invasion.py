@@ -4,6 +4,7 @@ from pygame.sprite import Group
 from settings import Settings
 from ship import Ship
 from game_stats import GameStats
+from button import Button
 from game_functions import check_events
 from game_functions import update_bullets
 from game_functions import update_screen
@@ -17,7 +18,8 @@ def run_game():
     ai_settings = Settings()
     screen = pygame.display.set_mode((ai_settings.screen_width, ai_settings.screen_height))
     pygame.display.set_caption(ai_settings.window_name)
-    # bg_color = ai_settings.bg_color
+    # Создание кнопки Play.
+    play_button = Button(ai_settings, screen, "Start Play")
 
     ship = Ship(ai_settings, screen)  # Создание корабля.
     bullets = Group()  # Создание группы для хранения пуль.
@@ -31,7 +33,7 @@ def run_game():
     while True:
         time.sleep(0.0005)  # уменьшение загрузки ЦП
         # Отслеживание событий клавиатуры и мыши.
-        check_events(ai_settings, screen, ship, bullets)
+        check_events(ai_settings, screen, stats, play_button, ship, bullets)
         # Обновляет позицию корабля.
         if stats.game_active:
             ship.update()
@@ -39,7 +41,7 @@ def run_game():
             update_aliens(ai_settings, stats, screen, ship, aliens, bullets)
 
         # Отображение прорисованного экрана при каждом проходе цикла.
-        update_screen(ai_settings, screen, ship, aliens, bullets)
+        update_screen(ai_settings, screen, stats, ship, aliens, bullets, play_button)
 
 if __name__ == "__main__":
     run_game()

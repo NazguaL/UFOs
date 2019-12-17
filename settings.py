@@ -30,3 +30,5 @@ class Settings:
         # fleet_direction = 1 обозначает движение вправо; а -1 - влево.
         self.fleet_direction = 1
 
+
+
