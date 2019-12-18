@@ -10,6 +10,7 @@ from game_functions import update_bullets
 from game_functions import update_screen
 from game_functions import create_fleet
 from game_functions import update_aliens
+from scoreboard import Scoreboard
 
 
 def run_game():
@@ -26,22 +27,23 @@ def run_game():
     aliens = Group()  # Создание группы пришельцев.
     create_fleet(ai_settings, screen, ship, aliens)  # Создание флота пришельцев.
 
-    # Создание экземпляра для хранения игровой статистики.
+    # Создание экземпляров GameStats и Scoreboard.
     stats = GameStats(ai_settings)
+    sb = Scoreboard(ai_settings, screen, stats)
 
     # Запуск основного цикла игры.
     while True:
         time.sleep(0.0005)  # уменьшение загрузки ЦП
         # Отслеживание событий клавиатуры и мыши.
-        check_events(ai_settings, screen, stats, play_button, ship, bullets)
+        check_events(ai_settings, screen, stats, play_button, ship, bullets, aliens)
         # Обновляет позицию корабля.
         if stats.game_active:
             ship.update()
-            update_bullets(ai_settings, screen, ship, aliens, bullets)
+            update_bullets(ai_settings, screen, stats, sb, ship, aliens, bullets)
             update_aliens(ai_settings, stats, screen, ship, aliens, bullets)
 
         # Отображение прорисованного экрана при каждом проходе цикла.
-        update_screen(ai_settings, screen, stats, ship, aliens, bullets, play_button)
+        update_screen(ai_settings, screen, stats, sb, ship, aliens, bullets, play_button)
 
 if __name__ == "__main__":
     run_game()

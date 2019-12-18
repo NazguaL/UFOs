@@ -1,4 +1,3 @@
-from bullet import Bullet
 from alien import Alien
 
 

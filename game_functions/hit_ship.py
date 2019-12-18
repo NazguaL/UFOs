@@ -1,3 +1,4 @@
+import pygame
 from time import sleep
 from game_functions import create_fleet
 
@@ -21,3 +22,4 @@ def ship_hit(ai_settings, stats, screen, ship, aliens, bullets):
 
     else:
         stats.game_active = False
+        pygame.mouse.set_visible(True)
