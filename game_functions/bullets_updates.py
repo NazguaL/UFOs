@@ -28,5 +28,8 @@ def check_bullet_alien_collisions(ai_settings, screen, stats, sb, ship, aliens, 
         # Уничтожение существующих пуль и создание нового флота.
         bullets.empty()
         ai_settings.increase_speed()
-        print(ai_settings.alien_speed_factor)
         create_fleet.create_fleet(ai_settings, screen, ship, aliens)
+
+        # Увеличение уровня.
+        stats.level += 1
+        sb.prep_level()

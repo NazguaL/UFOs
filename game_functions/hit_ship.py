@@ -3,11 +3,13 @@ from time import sleep
 from game_functions import create_fleet
 
 
-def ship_hit(ai_settings, stats, screen, ship, aliens, bullets):
+def ship_hit(ai_settings, stats, sb, screen, ship, aliens, bullets):
     """Обрабатывает столкновение корабля с пришельцем."""
     # Уменьшение ships_left.
     if stats.ships_left > 0:
         stats.ships_left -= 1
+        # Обновление игровой информации.
+        sb.prep_ships()
 
         # Очистка списков пришельцев и пуль.
         aliens.empty()

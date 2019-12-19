@@ -35,12 +35,12 @@ def run_game():
     while True:
         time.sleep(0.0005)  # уменьшение загрузки ЦП
         # Отслеживание событий клавиатуры и мыши.
-        check_events(ai_settings, screen, stats, play_button, ship, bullets, aliens)
+        check_events(ai_settings, screen, stats, sb, play_button, ship, bullets, aliens)
         # Обновляет позицию корабля.
         if stats.game_active:
             ship.update()
             update_bullets(ai_settings, screen, stats, sb, ship, aliens, bullets)
-            update_aliens(ai_settings, stats, screen, ship, aliens, bullets)
+            update_aliens(ai_settings, stats, sb, screen, ship, aliens, bullets)
 
         # Отображение прорисованного экрана при каждом проходе цикла.
         update_screen(ai_settings, screen, stats, sb, ship, aliens, bullets, play_button)

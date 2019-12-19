@@ -16,7 +16,7 @@ def check_keydown_events(event, ai_settings, screen, ship, bullets):
         sys.exit()
 
 
-def check_play_button(ai_settings, screen, stats, play_button, mouse_x, mouse_y, ship, bullets, aliens):
+def check_play_button(ai_settings, screen, stats, sb, play_button, mouse_x, mouse_y, ship, bullets, aliens):
     """Запускает новую игру при нажатии кнопки Play."""
     button_clicked = play_button.rect.collidepoint(mouse_x, mouse_y)
     if button_clicked and not stats.game_active:
@@ -28,6 +28,12 @@ def check_play_button(ai_settings, screen, stats, play_button, mouse_x, mouse_y,
         """Сброс игровой статистики."""
         stats.reset_stats()
         stats.game_active = True
+
+        # Сброс изображений счетов и уровня.
+        sb.prep_score()
+        sb.prep_high_score()
+        sb.prep_level()
+        sb.prep_ships()
 
         # Очистка списков пришельцев и пуль.
         aliens.empty()
@@ -45,7 +51,7 @@ def check_keyup_events(event, ship):
         ship.moving_left = False
 
 
-def check_events(ai_settings, screen, stats, play_button, ship, bullets, aliens):
+def check_events(ai_settings, screen, stats, sb, play_button, ship, bullets, aliens):
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             sys.exit()
@@ -55,6 +61,6 @@ def check_events(ai_settings, screen, stats, play_button, ship, bullets, aliens)
             check_keyup_events(event, ship)
         elif event.type == pygame.MOUSEBUTTONDOWN:
             mouse_x, mouse_y = pygame.mouse.get_pos()
-            check_play_button(ai_settings, screen, stats, play_button, mouse_x, mouse_y, ship, bullets, aliens)
+            check_play_button(ai_settings, screen, stats, sb, play_button, mouse_x, mouse_y, ship, bullets, aliens)
 
 
