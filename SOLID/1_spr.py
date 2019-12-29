@@ -57,3 +57,9 @@ class Animal:
 
     def save(self):
         self.db.save(animal=self)
+
+"""
+https://medium.com/webbdev/solid-4ffc018077da
+https://medium.com/@dorela/s-o-l-i-d-principles-explained-in-python-with-examples-3332520b90ff
+https://github.com/heykarimoff/solid.python
+"""
