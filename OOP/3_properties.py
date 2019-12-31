@@ -19,3 +19,5 @@ print(person.full_name)  # свойство вычисляется при обр
 person.last_name = 'CHANGED'
 
 print(person.full_name)
+
+# https://github.com/manchenkoff/skillbox-chat/blob/master/examples/08-properties.py
